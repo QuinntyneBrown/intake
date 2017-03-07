@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5304B8C5-0198-4BC6-B0F3-89713792CDE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intake", "src\Intake\Intake.csproj", "{A8711BC3-F343-4E44-B045-349942559795}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intake.Frontend", "Intake.Frontend\Intake.Frontend.csproj", "{6CF7543A-AABE-4803-8108-D66EC41C618D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8711BC3-F343-4E44-B045-349942559795}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8711BC3-F343-4E44-B045-349942559795}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8711BC3-F343-4E44-B045-349942559795}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8711BC3-F343-4E44-B045-349942559795}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CF7543A-AABE-4803-8108-D66EC41C618D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CF7543A-AABE-4803-8108-D66EC41C618D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CF7543A-AABE-4803-8108-D66EC41C618D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CF7543A-AABE-4803-8108-D66EC41C618D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A8711BC3-F343-4E44-B045-349942559795} = {5304B8C5-0198-4BC6-B0F3-89713792CDE9}
+		{6CF7543A-AABE-4803-8108-D66EC41C618D} = {5304B8C5-0198-4BC6-B0F3-89713792CDE9}
+	EndGlobalSection
+EndGlobal
