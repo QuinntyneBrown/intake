@@ -191,30 +191,38 @@
     <Compile Include="Features\Core\RateLimit.cs" />
     <Compile Include="Features\Core\StringExtensions.cs" />
     <Compile Include="Features\Core\WebApiUnityActionFilterProvider.cs" />
-    <Compile Include="Features\Quizzes\AddOrUpdateAnswerCommand.cs" />
-    <Compile Include="Features\Quizzes\AddOrUpdateOptionCommand.cs" />
-    <Compile Include="Features\Quizzes\AddOrUpdateQuestionCommand.cs" />
-    <Compile Include="Features\Quizzes\AddOrUpdateQuizCommand.cs" />
-    <Compile Include="Features\Quizzes\AnswerApiModel.cs" />
-    <Compile Include="Features\Quizzes\AnswerController.cs" />
-    <Compile Include="Features\Quizzes\GetAnswerByIdQuery.cs" />
-    <Compile Include="Features\Quizzes\GetAnswersQuery.cs" />
-    <Compile Include="Features\Quizzes\GetOptionByIdQuery.cs" />
-    <Compile Include="Features\Quizzes\GetOptionsQuery.cs" />
-    <Compile Include="Features\Quizzes\GetQuestionByIdQuery.cs" />
-    <Compile Include="Features\Quizzes\GetQuestionsQuery.cs" />
-    <Compile Include="Features\Quizzes\GetQuizByIdQuery.cs" />
-    <Compile Include="Features\Quizzes\GetQuizzesQuery.cs" />
-    <Compile Include="Features\Quizzes\OptionApiModel.cs" />
-    <Compile Include="Features\Quizzes\OptionController.cs" />
-    <Compile Include="Features\Quizzes\QuestionApiModel.cs" />
-    <Compile Include="Features\Quizzes\QuestionController.cs" />
-    <Compile Include="Features\Quizzes\QuizApiModel.cs" />
-    <Compile Include="Features\Quizzes\QuizController.cs" />
-    <Compile Include="Features\Quizzes\RemoveAnswerCommand.cs" />
-    <Compile Include="Features\Quizzes\RemoveOptionCommand.cs" />
-    <Compile Include="Features\Quizzes\RemoveQuestionCommand.cs" />
-    <Compile Include="Features\Quizzes\RemoveQuizCommand.cs" />
+    <Compile Include="Features\Surveys\AddOrUpdateAnswerCommand.cs" />
+    <Compile Include="Features\Surveys\AddOrUpdateOptionCommand.cs" />
+    <Compile Include="Features\Surveys\AddOrUpdateQuestionCommand.cs" />
+    <Compile Include="Features\Surveys\AddOrUpdateQuizCommand.cs" />
+    <Compile Include="Features\Surveys\AnswerApiModel.cs" />
+    <Compile Include="Features\Surveys\AnswerController.cs" />
+    <Compile Include="Features\Surveys\GetAnswerByIdQuery.cs" />
+    <Compile Include="Features\Surveys\GetAnswersQuery.cs" />
+    <Compile Include="Features\Surveys\GetOptionByIdQuery.cs" />
+    <Compile Include="Features\Surveys\GetOptionsQuery.cs" />
+    <Compile Include="Features\Surveys\GetQuestionByIdQuery.cs" />
+    <Compile Include="Features\Surveys\GetQuestionsQuery.cs" />
+    <Compile Include="Features\Surveys\GetQuizByIdQuery.cs" />
+    <Compile Include="Features\Surveys\GetQuizzesQuery.cs" />
+    <Compile Include="Features\Surveys\OptionApiModel.cs" />
+    <Compile Include="Features\Surveys\OptionController.cs" />
+    <Compile Include="Features\Surveys\QuestionApiModel.cs" />
+    <Compile Include="Features\Surveys\QuestionController.cs" />
+    <Compile Include="Features\Surveys\QuizApiModel.cs" />
+    <Compile Include="Features\Surveys\QuizController.cs" />
+    <Compile Include="Features\Surveys\RemoveAnswerCommand.cs" />
+    <Compile Include="Features\Surveys\RemoveOptionCommand.cs" />
+    <Compile Include="Features\Surveys\RemoveQuestionCommand.cs" />
+    <Compile Include="Features\Surveys\RemoveQuizCommand.cs" />
+    <Compile Include="Features\Users\AddOrUpdateUserCommand.cs" />
+    <Compile Include="Features\Users\Constants.cs" />
+    <Compile Include="Features\Users\GetUserByIdQuery.cs" />
+    <Compile Include="Features\Users\GetUserByUsernameQuery.cs" />
+    <Compile Include="Features\Users\GetUsersQuery.cs" />
+    <Compile Include="Features\Users\RemoveUserCommand.cs" />
+    <Compile Include="Features\Users\UserApiModel.cs" />
+    <Compile Include="Features\Users\UserController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Model\Project.cs" />
     <Compile Include="Data\Model\User.cs" />
@@ -223,7 +231,7 @@
     <Compile Include="Data\Model\Tenant.cs" />
     <Compile Include="Data\Model\ProjectRequestor.cs" />
     <Compile Include="Data\Model\Question.cs" />
-    <Compile Include="Data\Model\Quiz.cs" />
+    <Compile Include="Data\Model\Survey.cs" />
     <Compile Include="Security\AuthConfiguration.cs" />
     <Compile Include="Security\AuthenticateCommand.cs" />
     <Compile Include="Security\EncryptionService.cs" />
@@ -242,9 +250,7 @@
     <Compile Include="Features\Projects\ProjectController.cs" />
     <Compile Include="UnityConfiguration.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\Users\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

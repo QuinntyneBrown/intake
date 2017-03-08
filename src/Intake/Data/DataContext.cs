@@ -13,7 +13,7 @@ namespace Intake.Data
         DbSet<ProjectRequestor> ProjectRequestors { get; set; }
         DbSet<ProjectSponsor> ProjectSponsors { get; set; }
         DbSet<Question> Questions { get; set; }
-        DbSet<Quiz> Quizzes { get; set; }
+        DbSet<Survey> Surveys { get; set; }
         DbSet<Tenant> Tenants { get; set; }
         DbSet<Option> Options { get; set; }
         Task<int> SaveChangesAsync();
@@ -33,7 +33,7 @@ namespace Intake.Data
         public DbSet<ProjectRequestor> ProjectRequestors { get; set; }
         public DbSet<ProjectSponsor> ProjectSponsors { get; set; }
         public DbSet<Question> Questions { get; set; }
-        public DbSet<Quiz> Quizzes { get; set; }
+        public DbSet<Survey> Surveys { get; set; }
         public DbSet<Option> Options { get; set; }
         public DbSet<Tenant> Tenants { get; set; }
     }
