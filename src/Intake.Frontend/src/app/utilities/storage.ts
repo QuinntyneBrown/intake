@@ -1,32 +1,22 @@
 ﻿import { STORAGE_KEY } from "./constants";
-import { Injectable } from 'injection-js';
 
-@Injectable()
-export class StorageConfiguration {
-    public key: string = STORAGE_KEY;
-    public localStorage = localStorage;
-    public window: Window = window;
-}
-
-@Injectable()
 export class Storage {
-    constructor(_configuration: StorageConfiguration) {
+    constructor(private _key: string = STORAGE_KEY, private _localStorage: any = localStorage, private _window: Window = window) {
 
         this.onPageHide = this.onPageHide.bind(this);
 
-        this._window = _configuration.window;
-        this._localStorage = _configuration.localStorage;
-        this._key = _configuration.key;
-
-        this._window.addEventListener("pagehide",this.onPageHide);
+        _window.addEventListener("pagehide",this.onPageHide);
     }
-
-    private _localStorage;
-    private _window: Window;
-    private _key: string;
 
     private onPageHide() {
         this._localStorage.setItem(this._key, JSON.stringify(this._items));
+    }
+
+    private static _instance;
+
+    public static get Instance() {
+        this._instance = this._instance || new this();
+        return this._instance;
     }
 
     private _items = null;

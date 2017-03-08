@@ -2,15 +2,16 @@
 import { Router } from "./router";
 import { Route } from "./route";
 import { isArray, camelCaseToSnakeCase, Log } from "../utilities";
-import { Container } from "../../container";
+import { RouteReloadMiddleware } from "./route-reload-middleware";
 
 export abstract class RouterOutlet {
-    constructor(private _nativeHTMLElement: HTMLElement, public _router: Router = Container.resolve(Router)) {
-        this._onRouteChanged = this._onRouteChanged.bind(this);
+    constructor(private _nativeHTMLElement: HTMLElement, public _router: Router = Router.Instance) {
+        this.connectedCallback();
     }
 
     public connectedCallback() {
-        this._router.addEventListener(this._onRouteChanged);       
+        this.use(new RouteReloadMiddleware());
+        this._router.addEventListener(this._onRouteChanged.bind(this));       
     }
 
     public use(middleware: RouterMiddleware) {
@@ -18,7 +19,8 @@ export abstract class RouterOutlet {
     }
 
     private _middleware: Array<RouterMiddleware> = [];
-    
+
+    @Log()
     public _onRouteChanged(options: any) { 
         
         let nextView: HTMLElement = null;
@@ -45,7 +47,7 @@ export abstract class RouterOutlet {
             }
         }
 
-        if (!nextView) {            
+        if (!nextView) {
             nextView = document.createElement(`ce-${options.routeName}`);
 
             if (nextView) {
@@ -62,13 +64,14 @@ export abstract class RouterOutlet {
         this._nativeHTMLElement.appendChild(this._currentView);
 
         context.currentView = this._currentView;
+        this._routeName = options.routeName;
 
         this._middleware.forEach(listener => listener.afterViewTransition(context));    
 
         window.scrollTo(0,0);
     }
 
-    public setRoutes(routes: Array<Route>) {       
+    public setRoutes(routes: Array<Route>) {
         this._router.setRoutes(routes);
     }
 

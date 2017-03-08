@@ -1,19 +1,22 @@
 import { Storage, isNumeric, Log } from "../utilities";
 import { Route } from "./route";
-import { Environment } from "../environment";
-import { Container } from "../../container";
-import { Injectable } from 'injection-js';
+import { environment } from "../environment";
 
 export const routerKeys = {
     currentRoute: "[Router] current route"
 }
 
-@Injectable()
 export class Router {
-    constructor(        
-        private _storage: Storage,
-        private _environment: Environment
+    constructor(
+        private _routes: Array<Route> = [],
+        private _storage: Storage = Storage.Instance,
+        private _environment: { useUrlRouting: boolean } = environment
     ) { }
+
+    public static get Instance(): Router {
+        this._instance = this._instance || new this();
+        return this._instance;
+    }
 
     public get activatedRoute(): ActivatedRoute {
         return Object.assign(this._routes.find(r => r.name === this._routeName), { routeParams: this._routeParams });
@@ -44,7 +47,7 @@ export class Router {
     }
 
     private _onChanged(state: { route?: string, routeSegments?: Array<any> }) {
-        
+
         let routeParams = {};
         let match = false;
         if (state.routeSegments)
@@ -107,7 +110,7 @@ export class Router {
         this._routeParams = routeParams;
     }
 
-    public _addEventListeners() {        
+    public _addEventListeners() {
         window.onpopstate = () => this._onChanged({ route: window.location.pathname });
     }
 
@@ -117,5 +120,5 @@ export class Router {
     private _routePath: string;
     private _routeParams;
     private _callbacks: Array<any> = [];
-    private _routes: Array<Route> = [];
+    private static _instance;
 }

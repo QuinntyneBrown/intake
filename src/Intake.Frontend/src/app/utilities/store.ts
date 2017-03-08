@@ -1,5 +1,4 @@
 ﻿import { Storage } from "./storage";
-import { Container } from "../../container";
 
 export const STORE_KEY = "[Store] store key";
 
@@ -9,8 +8,12 @@ export interface Action {
 }
 
 export class Store {
-    constructor(private _storage: Storage = Container.resolve(Storage)) {
-        this._state = _storage.get({ name: STORE_KEY }) || {};
+    constructor(private _storage:Storage = Storage.Instance) { }
+
+    private static _instance: Store;
+    public static get Instance(): Store {
+        this._instance = this._instance || new this();
+        return this._instance;
     }
     
     public dispatch(action: Action){    
@@ -35,6 +38,7 @@ export class Store {
 
     private _observers = [];
     public middlewares = [];
-    private _state;
+    private _state = Store._initialState;
     public reducers = [];
+    private static readonly _initialState = Storage.Instance.get({ name: STORE_KEY }) || {};
 }
