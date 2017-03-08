@@ -194,7 +194,6 @@
     <Compile Include="Features\Surveys\AddOrUpdateAnswerCommand.cs" />
     <Compile Include="Features\Surveys\AddOrUpdateOptionCommand.cs" />
     <Compile Include="Features\Surveys\AddOrUpdateQuestionCommand.cs" />
-    <Compile Include="Features\Surveys\AddOrUpdateQuizCommand.cs" />
     <Compile Include="Features\Surveys\AnswerApiModel.cs" />
     <Compile Include="Features\Surveys\AnswerController.cs" />
     <Compile Include="Features\Surveys\GetAnswerByIdQuery.cs" />
@@ -203,18 +202,13 @@
     <Compile Include="Features\Surveys\GetOptionsQuery.cs" />
     <Compile Include="Features\Surveys\GetQuestionByIdQuery.cs" />
     <Compile Include="Features\Surveys\GetQuestionsQuery.cs" />
-    <Compile Include="Features\Surveys\GetQuizByIdQuery.cs" />
-    <Compile Include="Features\Surveys\GetQuizzesQuery.cs" />
     <Compile Include="Features\Surveys\OptionApiModel.cs" />
     <Compile Include="Features\Surveys\OptionController.cs" />
     <Compile Include="Features\Surveys\QuestionApiModel.cs" />
     <Compile Include="Features\Surveys\QuestionController.cs" />
-    <Compile Include="Features\Surveys\QuizApiModel.cs" />
-    <Compile Include="Features\Surveys\QuizController.cs" />
     <Compile Include="Features\Surveys\RemoveAnswerCommand.cs" />
     <Compile Include="Features\Surveys\RemoveOptionCommand.cs" />
     <Compile Include="Features\Surveys\RemoveQuestionCommand.cs" />
-    <Compile Include="Features\Surveys\RemoveQuizCommand.cs" />
     <Compile Include="Features\Users\AddOrUpdateUserCommand.cs" />
     <Compile Include="Features\Users\Constants.cs" />
     <Compile Include="Features\Users\GetUserByIdQuery.cs" />
@@ -249,6 +243,12 @@
     <Compile Include="Features\Projects\ProjectApiModel.cs" />
     <Compile Include="Features\Projects\ProjectController.cs" />
     <Compile Include="UnityConfiguration.cs" />
+    <Compile Include="Features\Surveys\AddOrUpdateSurveyCommand.cs" />
+    <Compile Include="Features\Surveys\GetSurveysQuery.cs" />
+    <Compile Include="Features\Surveys\GetSurveyByIdQuery.cs" />
+    <Compile Include="Features\Surveys\RemoveSurveyCommand.cs" />
+    <Compile Include="Features\Surveys\SurveyApiModel.cs" />
+    <Compile Include="Features\Surveys\SurveyController.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

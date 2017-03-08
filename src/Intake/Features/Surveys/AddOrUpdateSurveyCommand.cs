@@ -9,35 +9,35 @@ using System.Data.Entity;
 
 namespace Intake.Features.Surveys
 {
-    public class AddOrUpdateQuizCommand
+    public class AddOrUpdateSurveyCommand
     {
-        public class AddOrUpdateQuizRequest : IRequest<AddOrUpdateQuizResponse>
+        public class AddOrUpdateSurveyRequest : IRequest<AddOrUpdateSurveyResponse>
         {
-            public QuizApiModel Quiz { get; set; }
+            public SurveyApiModel Survey { get; set; }
         }
 
-        public class AddOrUpdateQuizResponse
+        public class AddOrUpdateSurveyResponse
         {
 
         }
 
-        public class AddOrUpdateQuizHandler : IAsyncRequestHandler<AddOrUpdateQuizRequest, AddOrUpdateQuizResponse>
+        public class AddOrUpdateSurveyHandler : IAsyncRequestHandler<AddOrUpdateSurveyRequest, AddOrUpdateSurveyResponse>
         {
-            public AddOrUpdateQuizHandler(DataContext dataContext, ICache cache)
+            public AddOrUpdateSurveyHandler(DataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
             }
 
-            public async Task<AddOrUpdateQuizResponse> Handle(AddOrUpdateQuizRequest request)
+            public async Task<AddOrUpdateSurveyResponse> Handle(AddOrUpdateSurveyRequest request)
             {
                 var entity = await _dataContext.Surveys
-                    .SingleOrDefaultAsync(x => x.Id == request.Quiz.Id && x.IsDeleted == false);
+                    .SingleOrDefaultAsync(x => x.Id == request.Survey.Id && x.IsDeleted == false);
                 if (entity == null) _dataContext.Surveys.Add(entity = new Survey());
-                entity.Name = request.Quiz.Name;
+                entity.Name = request.Survey.Name;
                 await _dataContext.SaveChangesAsync();
 
-                return new AddOrUpdateQuizResponse()
+                return new AddOrUpdateSurveyResponse()
                 {
 
                 };

@@ -9,29 +9,29 @@ using System.Data.Entity;
 
 namespace Intake.Features.Surveys
 {
-    public class RemoveQuizCommand
+    public class RemoveSurveyCommand
     {
-        public class RemoveQuizRequest : IRequest<RemoveQuizResponse>
+        public class RemoveSurveyRequest : IRequest<RemoveSurveyResponse>
         {
             public int Id { get; set; }
         }
 
-        public class RemoveQuizResponse { }
+        public class RemoveSurveyResponse { }
 
-        public class RemoveQuizHandler : IAsyncRequestHandler<RemoveQuizRequest, RemoveQuizResponse>
+        public class RemoveSurveyHandler : IAsyncRequestHandler<RemoveSurveyRequest, RemoveSurveyResponse>
         {
-            public RemoveQuizHandler(DataContext dataContext, ICache cache)
+            public RemoveSurveyHandler(DataContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
             }
 
-            public async Task<RemoveQuizResponse> Handle(RemoveQuizRequest request)
+            public async Task<RemoveSurveyResponse> Handle(RemoveSurveyRequest request)
             {
-                var quiz = await _dataContext.Surveys.FindAsync(request.Id);
-                quiz.IsDeleted = true;
+                var survey = await _dataContext.Surveys.FindAsync(request.Id);
+                survey.IsDeleted = true;
                 await _dataContext.SaveChangesAsync();
-                return new RemoveQuizResponse();
+                return new RemoveSurveyResponse();
             }
 
             private readonly DataContext _dataContext;

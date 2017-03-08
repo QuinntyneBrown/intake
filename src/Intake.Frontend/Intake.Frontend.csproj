@@ -101,6 +101,84 @@
     <Content Include="src\app\projects\project-list.component.scss">
       <DependentUpon>project-list.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\shared\button.component.html">
+      <DependentUpon>button.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\button.component.scss">
+      <DependentUpon>button.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\checkbox-field.component.html">
+      <DependentUpon>checkbox-field.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\checkbox-field.component.scss">
+      <DependentUpon>checkbox-field.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\drop-down-item.component.html">
+      <DependentUpon>drop-down-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\drop-down-item.component.scss">
+      <DependentUpon>drop-down-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\drop-down.component.html">
+      <DependentUpon>drop-down.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\drop-down.component.scss">
+      <DependentUpon>drop-down.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\drop-zone.component.html">
+      <DependentUpon>drop-zone.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\drop-zone.component.scss">
+      <DependentUpon>drop-zone.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\footer.component.html">
+      <DependentUpon>footer.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\footer.component.scss">
+      <DependentUpon>footer.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\header.component.html">
+      <DependentUpon>header.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\header.component.scss">
+      <DependentUpon>header.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\option.component.html">
+      <DependentUpon>option.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\option.component.scss">
+      <DependentUpon>option.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\select.component.html">
+      <DependentUpon>select.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\select.component.scss">
+      <DependentUpon>select.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\side-nav.component.html">
+      <DependentUpon>side-nav.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\side-nav.component.scss">
+      <DependentUpon>side-nav.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\tabs.component.html">
+      <DependentUpon>tabs.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\shared\tabs.component.scss">
+      <DependentUpon>tabs.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\surveys\question-edit.component.html">
+      <DependentUpon>question-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\surveys\question-edit.component.scss">
+      <DependentUpon>question-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\surveys\question-list.component.html">
+      <DependentUpon>question-list.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\surveys\question-list.component.scss">
+      <DependentUpon>question-list.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\surveys\survey-edit.component.html">
       <DependentUpon>survey-edit.component.ts</DependentUpon>
     </Content>
@@ -113,11 +191,33 @@
     <Content Include="src\app\surveys\survey-list.component.scss">
       <DependentUpon>survey-list.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\users\login.component.html">
+      <DependentUpon>login.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\users\login.component.scss">
+      <DependentUpon>login.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\users\register.component.html">
+      <DependentUpon>register.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\users\register.component.scss">
+      <DependentUpon>register.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\users\users.component.html">
+      <DependentUpon>users.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\users\users.component.scss">
+      <DependentUpon>users.component.ts</DependentUpon>
+    </Content>
     <Content Include="webpack.config.js" />
     <Content Include="package.json" />
     <Content Include="tsconfig.json" />
     <Content Include="typings.json" />
     <Content Include="src\app\pagination\paged-list.scss" />
+    <Content Include="src\styles\base\_all.scss" />
+    <Content Include="src\styles\base\_grid-settings.scss" />
+    <Content Include="src\styles\base\_typography.scss" />
+    <Content Include="src\styles\base\_variables.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -188,41 +288,59 @@
     <TypeScriptCompile Include="src\app\router\router-middleware.ts" />
     <TypeScriptCompile Include="src\app\router\router-outlet.ts" />
     <TypeScriptCompile Include="src\app\router\router.ts" />
-    <TypeScriptCompile Include="src\app\shared\add-or-update.ts" />
-    <TypeScriptCompile Include="src\app\shared\append-to-body-async.ts" />
-    <TypeScriptCompile Include="src\app\shared\append-to-target-async.ts" />
-    <TypeScriptCompile Include="src\app\shared\camel-case-to-snake-case.ts" />
-    <TypeScriptCompile Include="src\app\shared\constants.ts" />
-    <TypeScriptCompile Include="src\app\shared\constructor.ts" />
-    <TypeScriptCompile Include="src\app\shared\create-element.ts" />
-    <TypeScriptCompile Include="src\app\shared\debounce.ts" />
-    <TypeScriptCompile Include="src\app\shared\extend-css-async.ts" />
-    <TypeScriptCompile Include="src\app\shared\extend.ts" />
-    <TypeScriptCompile Include="src\app\shared\form-encode.ts" />
-    <TypeScriptCompile Include="src\app\shared\guid.ts" />
-    <TypeScriptCompile Include="src\app\shared\http.ts" />
+    <TypeScriptCompile Include="src\app\shared\backdrop.ts" />
+    <TypeScriptCompile Include="src\app\shared\button.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\checkbox-field.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\drop-down-item.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\drop-down.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\drop-zone.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\editor.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\footer.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\header.component.ts" />
     <TypeScriptCompile Include="src\app\shared\index.ts" />
-    <TypeScriptCompile Include="src\app\shared\insert-after.ts" />
-    <TypeScriptCompile Include="src\app\shared\is-array.ts" />
-    <TypeScriptCompile Include="src\app\shared\is-numeric.ts" />
-    <TypeScriptCompile Include="src\app\shared\load-style.ts" />
-    <TypeScriptCompile Include="src\app\shared\log.ts" />
-    <TypeScriptCompile Include="src\app\shared\logger.ts" />
-    <TypeScriptCompile Include="src\app\shared\pluck-out.ts" />
-    <TypeScriptCompile Include="src\app\shared\pluck.ts" />
-    <TypeScriptCompile Include="src\app\shared\position.ts" />
-    <TypeScriptCompile Include="src\app\shared\rectangle.ts" />
-    <TypeScriptCompile Include="src\app\shared\remove-element.ts" />
-    <TypeScriptCompile Include="src\app\shared\ruler.ts" />
-    <TypeScriptCompile Include="src\app\shared\set-opacity-async.ts" />
-    <TypeScriptCompile Include="src\app\shared\space.ts" />
-    <TypeScriptCompile Include="src\app\shared\storage.ts" />
-    <TypeScriptCompile Include="src\app\shared\store.ts" />
-    <TypeScriptCompile Include="src\app\shared\target-value.ts" />
-    <TypeScriptCompile Include="src\app\shared\template.ts" />
-    <TypeScriptCompile Include="src\app\shared\translate-x.ts" />
-    <TypeScriptCompile Include="src\app\shared\translate-xy.ts" />
-    <TypeScriptCompile Include="src\app\shared\wait.ts" />
+    <TypeScriptCompile Include="src\app\shared\modal.ts" />
+    <TypeScriptCompile Include="src\app\shared\option.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\popover.ts" />
+    <TypeScriptCompile Include="src\app\shared\select.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\seo.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\side-nav.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\tabs.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\title.service.ts" />
+    <TypeScriptCompile Include="src\app\utilities\add-or-update.ts" />
+    <TypeScriptCompile Include="src\app\utilities\append-to-body-async.ts" />
+    <TypeScriptCompile Include="src\app\utilities\append-to-target-async.ts" />
+    <TypeScriptCompile Include="src\app\utilities\camel-case-to-snake-case.ts" />
+    <TypeScriptCompile Include="src\app\utilities\constants.ts" />
+    <TypeScriptCompile Include="src\app\utilities\constructor.ts" />
+    <TypeScriptCompile Include="src\app\utilities\create-element.ts" />
+    <TypeScriptCompile Include="src\app\utilities\debounce.ts" />
+    <TypeScriptCompile Include="src\app\utilities\extend-css-async.ts" />
+    <TypeScriptCompile Include="src\app\utilities\extend.ts" />
+    <TypeScriptCompile Include="src\app\utilities\form-encode.ts" />
+    <TypeScriptCompile Include="src\app\utilities\guid.ts" />
+    <TypeScriptCompile Include="src\app\utilities\http.ts" />
+    <TypeScriptCompile Include="src\app\utilities\index.ts" />
+    <TypeScriptCompile Include="src\app\utilities\insert-after.ts" />
+    <TypeScriptCompile Include="src\app\utilities\is-array.ts" />
+    <TypeScriptCompile Include="src\app\utilities\is-numeric.ts" />
+    <TypeScriptCompile Include="src\app\utilities\load-style.ts" />
+    <TypeScriptCompile Include="src\app\utilities\log.ts" />
+    <TypeScriptCompile Include="src\app\utilities\logger.ts" />
+    <TypeScriptCompile Include="src\app\utilities\pluck-out.ts" />
+    <TypeScriptCompile Include="src\app\utilities\pluck.ts" />
+    <TypeScriptCompile Include="src\app\utilities\position.ts" />
+    <TypeScriptCompile Include="src\app\utilities\rectangle.ts" />
+    <TypeScriptCompile Include="src\app\utilities\remove-element.ts" />
+    <TypeScriptCompile Include="src\app\utilities\ruler.ts" />
+    <TypeScriptCompile Include="src\app\utilities\set-opacity-async.ts" />
+    <TypeScriptCompile Include="src\app\utilities\space.ts" />
+    <TypeScriptCompile Include="src\app\utilities\storage.ts" />
+    <TypeScriptCompile Include="src\app\utilities\store.ts" />
+    <TypeScriptCompile Include="src\app\utilities\target-value.ts" />
+    <TypeScriptCompile Include="src\app\utilities\template.ts" />
+    <TypeScriptCompile Include="src\app\utilities\translate-x.ts" />
+    <TypeScriptCompile Include="src\app\utilities\translate-xy.ts" />
+    <TypeScriptCompile Include="src\app\utilities\wait.ts" />
     <TypeScriptCompile Include="src\app\surveys\index.ts" />
     <TypeScriptCompile Include="src\app\projects\project.model.ts" />
     <TypeScriptCompile Include="src\app\surveys\survey.model.ts" />
@@ -233,7 +351,21 @@
     <TypeScriptCompile Include="src\app\surveys\survey-edit.component.ts" />
     <TypeScriptCompile Include="src\app\surveys\survey-list.component.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
+    <TypeScriptCompile Include="src\app\users\authorized-route-listener.ts" />
+    <TypeScriptCompile Include="src\app\users\current-user.ts" />
+    <TypeScriptCompile Include="src\app\users\index.ts" />
+    <TypeScriptCompile Include="src\app\users\login-redirect.ts" />
+    <TypeScriptCompile Include="src\app\users\login.component.ts" />
+    <TypeScriptCompile Include="src\app\users\register.component.ts" />
+    <TypeScriptCompile Include="src\app\users\user.model.ts" />
+    <TypeScriptCompile Include="src\app\users\user.service.ts" />
+    <TypeScriptCompile Include="src\app\users\users.component.ts" />
     <TypeScriptCompile Include="src\main.ts" />
+    <TypeScriptCompile Include="src\app\surveys\question-list.component.ts" />
+    <TypeScriptCompile Include="src\app\surveys\question-edit.component.ts" />
+    <TypeScriptCompile Include="src\app\surveys\question.model.ts" />
+    <TypeScriptCompile Include="src\app\surveys\question.service.ts" />
+    <TypeScriptCompile Include="src\app\app-router-outlet.component.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>
