@@ -2,7 +2,7 @@ import { RouterOutlet } from "./router";
 import { AuthorizedRouteMiddleware } from "./users";
 
 export class AppRouterOutletComponent extends RouterOutlet {
-    constructor(el: HTMLElement) {
+    constructor(el: any) {
         super(el);
     }
 
