@@ -13,6 +13,7 @@ namespace Intake.Data.Model
         public int? SurveyId { get; set; }
         [ForeignKey("Tenant")]
         public int? TenantId { get; set; }
+        public QuestionType QuestionType { get; set; } = QuestionType.Default;
         public string Name { get; set; }
         public string Body { get; set; }
         public int? OrderIndex { get; set; }

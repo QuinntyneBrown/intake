@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Intake.Data.Model
 {
     [SoftDelete("IsDeleted")]
-    public class Option
+    public class Option: ILoggable
     {        
         public int Id { get; set; }
         [ForeignKey("Question")]
