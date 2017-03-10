@@ -181,9 +181,11 @@
     <Compile Include="Data\Helpers\SoftDeleteAttribute.cs" />
     <Compile Include="Data\Helpers\SoftDeleteInterceptor.cs" />
     <Compile Include="Data\Helpers\SoftDeleteQueryVisitor.cs" />
-    <Compile Include="Data\Model\Answer.cs" />
+    <Compile Include="Data\Model\Response.cs" />
+    <Compile Include="Data\Model\ILoggable.cs" />
     <Compile Include="Data\Model\Option.cs" />
     <Compile Include="Data\Migrations\Configuration.cs" />
+    <Compile Include="Data\Model\QuestionType.cs" />
     <Compile Include="Features\Core\Cache.cs" />
     <Compile Include="Features\Core\CacheProvider.cs" />
     <Compile Include="Features\Core\HandleError.cs" />
@@ -198,13 +200,8 @@
     <Compile Include="Features\Core\RateLimit.cs" />
     <Compile Include="Features\Core\StringExtensions.cs" />
     <Compile Include="Features\Core\WebApiUnityActionFilterProvider.cs" />
-    <Compile Include="Features\Surveys\AddOrUpdateAnswerCommand.cs" />
     <Compile Include="Features\Surveys\AddOrUpdateOptionCommand.cs" />
     <Compile Include="Features\Surveys\AddOrUpdateQuestionCommand.cs" />
-    <Compile Include="Features\Surveys\AnswerApiModel.cs" />
-    <Compile Include="Features\Surveys\AnswerController.cs" />
-    <Compile Include="Features\Surveys\GetAnswerByIdQuery.cs" />
-    <Compile Include="Features\Surveys\GetAnswersQuery.cs" />
     <Compile Include="Features\Surveys\GetOptionByIdQuery.cs" />
     <Compile Include="Features\Surveys\GetOptionsQuery.cs" />
     <Compile Include="Features\Surveys\GetQuestionByIdQuery.cs" />
@@ -213,7 +210,6 @@
     <Compile Include="Features\Surveys\OptionController.cs" />
     <Compile Include="Features\Surveys\QuestionApiModel.cs" />
     <Compile Include="Features\Surveys\QuestionController.cs" />
-    <Compile Include="Features\Surveys\RemoveAnswerCommand.cs" />
     <Compile Include="Features\Surveys\RemoveOptionCommand.cs" />
     <Compile Include="Features\Surveys\RemoveQuestionCommand.cs" />
     <Compile Include="Features\Users\AddOrUpdateUserCommand.cs" />
@@ -225,12 +221,9 @@
     <Compile Include="Features\Users\UserApiModel.cs" />
     <Compile Include="Features\Users\UserController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Data\Model\Project.cs" />
     <Compile Include="Data\Model\User.cs" />
     <Compile Include="Data\Model\Role.cs" />
-    <Compile Include="Data\Model\ProjectSponsor.cs" />
     <Compile Include="Data\Model\Tenant.cs" />
-    <Compile Include="Data\Model\ProjectRequestor.cs" />
     <Compile Include="Data\Model\Question.cs" />
     <Compile Include="Data\Model\Survey.cs" />
     <Compile Include="Security\AuthConfiguration.cs" />
@@ -243,12 +236,6 @@
     <Compile Include="Security\OAuthOptions.cs" />
     <Compile Include="Security\OAuthProvider.cs" />
     <Compile Include="Security\UserManager.cs" />
-    <Compile Include="Features\Projects\AddOrUpdateProjectCommand.cs" />
-    <Compile Include="Features\Projects\GetProjectsQuery.cs" />
-    <Compile Include="Features\Projects\GetProjectByIdQuery.cs" />
-    <Compile Include="Features\Projects\RemoveProjectCommand.cs" />
-    <Compile Include="Features\Projects\ProjectApiModel.cs" />
-    <Compile Include="Features\Projects\ProjectController.cs" />
     <Compile Include="UnityConfiguration.cs" />
     <Compile Include="Features\Surveys\AddOrUpdateSurveyCommand.cs" />
     <Compile Include="Features\Surveys\GetSurveysQuery.cs" />
@@ -256,6 +243,19 @@
     <Compile Include="Features\Surveys\RemoveSurveyCommand.cs" />
     <Compile Include="Features\Surveys\SurveyApiModel.cs" />
     <Compile Include="Features\Surveys\SurveyController.cs" />
+    <Compile Include="Data\Model\Respondent.cs" />
+    <Compile Include="Features\Surveys\AddOrUpdateRespondentCommand.cs" />
+    <Compile Include="Features\Surveys\GetRespondentsQuery.cs" />
+    <Compile Include="Features\Surveys\GetRespondentByIdQuery.cs" />
+    <Compile Include="Features\Surveys\RemoveRespondentCommand.cs" />
+    <Compile Include="Features\Surveys\RespondentApiModel.cs" />
+    <Compile Include="Features\Surveys\RespondentController.cs" />
+    <Compile Include="Features\Surveys\AddOrUpdateResponseCommand.cs" />
+    <Compile Include="Features\Surveys\GetResponsesQuery.cs" />
+    <Compile Include="Features\Surveys\GetResponseByIdQuery.cs" />
+    <Compile Include="Features\Surveys\RemoveResponseCommand.cs" />
+    <Compile Include="Features\Surveys\ResponseApiModel.cs" />
+    <Compile Include="Features\Surveys\ResponseController.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

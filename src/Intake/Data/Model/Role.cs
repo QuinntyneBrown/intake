@@ -1,8 +1,10 @@
+using Intake.Data.Helpers;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Intake.Data.Model
 {
+    [SoftDelete("IsDeleted")]
     public class Role
     {
         public int Id { get; set; }

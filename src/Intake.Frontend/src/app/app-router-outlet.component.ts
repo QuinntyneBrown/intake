@@ -1,5 +1,4 @@
 import { RouterOutlet } from "./router";
-import { AuthorizedRouteMiddleware } from "./users";
 
 export class AppRouterOutletComponent extends RouterOutlet {
     constructor(el: any) {
@@ -8,15 +7,10 @@ export class AppRouterOutletComponent extends RouterOutlet {
 
     connectedCallback() {
         this.setRoutes([
-            { path: "/", name: "survey-list", authRequired: true },
-            { path: "/login", name: "login" },
-            { path: "/error", name: "error" },
-            { path: "*", name: "not-found" }
-
+            { path: "/", name: "landing" },
+            { path: "/error", name: "error" }            
         ] as any);
-
-        this.use(new AuthorizedRouteMiddleware());
-
+        
         super.connectedCallback();
     }
 
