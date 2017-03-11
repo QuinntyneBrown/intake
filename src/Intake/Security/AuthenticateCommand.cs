@@ -26,10 +26,10 @@ namespace Intake.Security
 
         public class AuthenticateHandler : IAsyncRequestHandler<AuthenticateRequest, AuthenticateResponse>
         {
-            public AuthenticateHandler(IDataContext dataContext, IEncryptionService encryptionService)
+            public AuthenticateHandler(IIntakeContext context, IEncryptionService encryptionService)
             {
                 _encryptionService = encryptionService;
-                _dataContext = dataContext;
+                _context = context;
             }
 
             public bool ValidateUser(User user, string transformedPassword)
@@ -42,7 +42,7 @@ namespace Intake.Security
 
             public async Task<AuthenticateResponse> Handle(AuthenticateRequest message)
             {
-                var user = await _dataContext.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == message.Username.ToLower() && !x.IsDeleted);
+                var user = await _context.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == message.Username.ToLower() && !x.IsDeleted);
 
                 return new AuthenticateResponse()
                 {
@@ -51,7 +51,7 @@ namespace Intake.Security
             }
 
 
-            protected readonly IDataContext _dataContext;
+            protected readonly IIntakeContext _context;
             private IEncryptionService _encryptionService { get; set; }
         }
 

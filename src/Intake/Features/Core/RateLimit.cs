@@ -55,7 +55,7 @@ namespace Intake.Features.Core
         }
 
         [Dependency]
-        public DataContext _dataContext { get; set; }
+        public IntakeContext _dataContext { get; set; }
 
         private int _maxRequestsHour;
     }

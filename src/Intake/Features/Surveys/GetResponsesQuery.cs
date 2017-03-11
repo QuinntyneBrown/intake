@@ -19,7 +19,7 @@ namespace Intake.Features.Surveys
 
         public class GetResponsesHandler : IAsyncRequestHandler<GetResponsesRequest, GetResponsesResponse>
         {
-            public GetResponsesHandler(DataContext dataContext, ICache cache)
+            public GetResponsesHandler(IntakeContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -37,7 +37,7 @@ namespace Intake.Features.Surveys
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IntakeContext _dataContext;
             private readonly ICache _cache;
         }
 

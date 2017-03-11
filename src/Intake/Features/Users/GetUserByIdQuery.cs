@@ -21,9 +21,9 @@ namespace Intake.Features.Users
 
         public class GetUserByIdHandler : IAsyncRequestHandler<GetUserByIdRequest, GetUserByIdResponse>
         {
-            public GetUserByIdHandler(IDataContext dataContext, ICache cache)
+            public GetUserByIdHandler(IIntakeContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -31,11 +31,11 @@ namespace Intake.Features.Users
             {                
                 return new GetUserByIdResponse()
                 {
-                    User = UserApiModel.FromUser(await _dataContext.Users.FindAsync(request.Id))
+                    User = UserApiModel.FromUser(await _context.Users.FindAsync(request.Id))
                 };
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IIntakeContext _context;
             private readonly ICache _cache;
         }
 

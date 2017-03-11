@@ -20,21 +20,21 @@ namespace Intake.Features.Users
 
         public class RemoveUserHandler : IAsyncRequestHandler<RemoveUserRequest, RemoveUserResponse>
         {
-            public RemoveUserHandler(IDataContext dataContext, ICache cache)
+            public RemoveUserHandler(IIntakeContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveUserResponse> Handle(RemoveUserRequest request)
             {
-                var user = await _dataContext.Users.FindAsync(request.Id);
+                var user = await _context.Users.FindAsync(request.Id);
                 user.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveUserResponse();
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IIntakeContext _context;
             private readonly ICache _cache;
         }
     }

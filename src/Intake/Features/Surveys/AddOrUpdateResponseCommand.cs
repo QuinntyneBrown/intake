@@ -23,7 +23,7 @@ namespace Intake.Features.Surveys
 
         public class AddOrUpdateResponseHandler : IAsyncRequestHandler<AddOrUpdateResponseRequest, AddOrUpdateResponseResponse>
         {
-            public AddOrUpdateResponseHandler(DataContext dataContext, ICache cache)
+            public AddOrUpdateResponseHandler(IntakeContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -43,7 +43,7 @@ namespace Intake.Features.Surveys
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IntakeContext _dataContext;
             private readonly ICache _cache;
         }
 

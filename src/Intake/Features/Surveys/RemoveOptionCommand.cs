@@ -20,7 +20,7 @@ namespace Intake.Features.Surveys
 
         public class RemoveOptionHandler : IAsyncRequestHandler<RemoveOptionRequest, RemoveOptionResponse>
         {
-            public RemoveOptionHandler(DataContext dataContext, ICache cache)
+            public RemoveOptionHandler(IntakeContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Intake.Features.Surveys
                 return new RemoveOptionResponse();
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IntakeContext _dataContext;
             private readonly ICache _cache;
         }
     }

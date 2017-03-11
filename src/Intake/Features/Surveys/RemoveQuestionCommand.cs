@@ -20,7 +20,7 @@ namespace Intake.Features.Surveys
 
         public class RemoveQuestionHandler : IAsyncRequestHandler<RemoveQuestionRequest, RemoveQuestionResponse>
         {
-            public RemoveQuestionHandler(DataContext dataContext, ICache cache)
+            public RemoveQuestionHandler(IntakeContext dataContext, ICache cache)
             {
                 _dataContext = dataContext;
                 _cache = cache;
@@ -34,7 +34,7 @@ namespace Intake.Features.Surveys
                 return new RemoveQuestionResponse();
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IntakeContext _dataContext;
             private readonly ICache _cache;
         }
     }

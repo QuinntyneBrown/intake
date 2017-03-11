@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Intake.Data
 {
-    public interface IDataContext
+    public interface IIntakeContext
     {
         DbSet<Response> Responses { get; set; }
         DbSet<User> Users { get; set; }
@@ -19,10 +19,10 @@ namespace Intake.Data
         Task<int> SaveChangesAsync();
     }
 
-    public class DataContext: DbContext, IDataContext
+    public class IntakeContext: DbContext, IIntakeContext
     {
-        public DataContext()
-            :base("IntakeDataContext")
+        public IntakeContext()
+            :base("IntakeContext")
         {
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;

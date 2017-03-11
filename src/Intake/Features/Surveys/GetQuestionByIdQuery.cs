@@ -1,10 +1,7 @@
 using MediatR;
 using Intake.Data;
 using Intake.Features.Core;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
-using System.Data.Entity;
 
 namespace Intake.Features.Surveys
 {
@@ -21,9 +18,9 @@ namespace Intake.Features.Surveys
 
         public class GetQuestionByIdHandler : IAsyncRequestHandler<GetQuestionByIdRequest, GetQuestionByIdResponse>
         {
-            public GetQuestionByIdHandler(DataContext dataContext, ICache cache)
+            public GetQuestionByIdHandler(IntakeContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -31,11 +28,11 @@ namespace Intake.Features.Surveys
             {                
                 return new GetQuestionByIdResponse()
                 {
-                    Question = QuestionApiModel.FromQuestion(await _dataContext.Questions.FindAsync(request.Id))
+                    Question = QuestionApiModel.FromQuestion(await _context.Questions.FindAsync(request.Id))
                 };
             }
 
-            private readonly DataContext _dataContext;
+            private readonly IntakeContext _context;
             private readonly ICache _cache;
         }
 

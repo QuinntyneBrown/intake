@@ -22,9 +22,9 @@ namespace Intake.Security
 
         public class GetClaimsForUserHandler : IAsyncRequestHandler<GetClaimsForUserRequest, GetClaimsForUserResponse>
         {
-            public GetClaimsForUserHandler(IDataContext dataContext)
+            public GetClaimsForUserHandler(IIntakeContext context)
             {
-                _dataContext = dataContext;
+                _context = context;
             }
 
             public async Task<GetClaimsForUserResponse> Handle(GetClaimsForUserRequest message)
@@ -32,7 +32,7 @@ namespace Intake.Security
 
                 var claims = new List<System.Security.Claims.Claim>();
 
-                var user = await _dataContext.Users
+                var user = await _context.Users
                     .Include(x => x.Roles)
                     .SingleAsync(x => x.Username == message.Username);
 
@@ -49,7 +49,7 @@ namespace Intake.Security
                 };
             }
 
-            private readonly IDataContext _dataContext;
+            private readonly IIntakeContext _context;
             
         }
     }
