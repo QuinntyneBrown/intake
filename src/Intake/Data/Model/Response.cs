@@ -12,7 +12,6 @@ namespace Intake.Data.Model
         public int? TenantId { get; set; }
         [ForeignKey("Option")]
         public int? OptionId { get; set; }        
-        public string Name { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime LastModifiedOn { get; set; }
         public string CreatedBy { get; set; }

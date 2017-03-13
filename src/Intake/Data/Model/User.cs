@@ -1,6 +1,8 @@
 using Intake.Data.Helpers;
+using static Intake.Constants;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Intake.Data.Model
@@ -11,6 +13,9 @@ namespace Intake.Data.Model
         public int Id { get; set; }
         [ForeignKey("Tenant")]
         public int? TenantId { get; set; }
+        [Index("NameIndex", IsUnique = true)]
+        [Column(TypeName = "VARCHAR")]
+        [StringLength(MaxStringLength)]
         public string Name { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }

@@ -2,9 +2,7 @@ using MediatR;
 using Intake.Data;
 using Intake.Data.Model;
 using Intake.Features.Core;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 using System.Data.Entity;
 
 namespace Intake.Features.Surveys
@@ -34,13 +32,10 @@ namespace Intake.Features.Surveys
                 var entity = await _dataContext.Responses
                     .SingleOrDefaultAsync(x => x.Id == request.Response.Id && x.IsDeleted == false);
                 if (entity == null) _dataContext.Responses.Add(entity = new Response());
-                entity.Name = request.Response.Name;
+                
                 await _dataContext.SaveChangesAsync();
 
-                return new AddOrUpdateResponseResponse()
-                {
-
-                };
+                return new AddOrUpdateResponseResponse();
             }
 
             private readonly IntakeContext _dataContext;

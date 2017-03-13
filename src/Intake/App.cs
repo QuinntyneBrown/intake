@@ -91,5 +91,6 @@ namespace Intake
         public static string VERSION = "1.0.0-alpha.0";
         public const int CacheOutputClientTimeSpan = 3600;
         public const int CacheOutputServerTimeSpan = 3600;
+        public const int MaxStringLength = 255;
     }
 }

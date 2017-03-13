@@ -1,5 +1,8 @@
 using Intake.Data.Helpers;
+using static Intake.Constants;
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Intake.Data.Model
 {
@@ -7,6 +10,9 @@ namespace Intake.Data.Model
     public class Tenant: ILoggable
     {
         public int Id { get; set; }
+        [Index("NameIndex", IsUnique = true)]
+        [Column(TypeName = "VARCHAR")]
+        [StringLength(MaxStringLength)]
         public string Name { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime LastModifiedOn { get; set; }

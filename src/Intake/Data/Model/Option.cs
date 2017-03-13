@@ -1,7 +1,9 @@
 using Intake.Data.Helpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static Intake.Constants;
 
 namespace Intake.Data.Model
 {
@@ -13,6 +15,9 @@ namespace Intake.Data.Model
         public int? QuestionId { get; set; }
         [ForeignKey("Tenant")]
         public int? TenantId { get; set; }
+        [Index("NameIndex", IsUnique = true)]
+        [Column(TypeName = "VARCHAR")]
+        [StringLength(MaxStringLength)]
         public string Name { get; set; }
         public ICollection<Response> Responses { get; set; } = new HashSet<Response>();
         public int OrderIndex { get; set; }
