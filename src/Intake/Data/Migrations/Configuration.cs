@@ -13,6 +13,7 @@ namespace Intake.Migrations
 
         protected override void Seed(IntakeContext context)
         {
+            TenantConfiguration.Seed(context);
             RoleConfiguration.Seed(context);
             UserConfiguration.Seed(context);
         }

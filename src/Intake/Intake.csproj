@@ -258,6 +258,7 @@
     <Compile Include="Features\Surveys\ResponseController.cs" />
     <Compile Include="Data\Migrations\UserConfiguration.cs" />
     <Compile Include="Data\Migrations\RoleConfiguration.cs" />
+    <Compile Include="Data\Migrations\TenantConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
