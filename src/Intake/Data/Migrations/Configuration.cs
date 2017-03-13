@@ -1,31 +1,28 @@
 namespace Intake.Migrations
 {
-    using System;
-    using System.Data.Entity;
+    using Data;
+    using Data.Helpers;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Intake.Data.IntakeContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<IntakeContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Intake.Data.IntakeContext context)
+        protected override void Seed(IntakeContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            RoleConfiguration.Seed(context);
+            UserConfiguration.Seed(context);
+        }
+    }
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+    public class DbConfiguration : System.Data.Entity.DbConfiguration
+    {
+        public DbConfiguration()
+        {
+            AddInterceptor(new SoftDeleteInterceptor());
         }
     }
 }
