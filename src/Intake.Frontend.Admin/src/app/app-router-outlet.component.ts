@@ -9,6 +9,10 @@ export class AppRouterOutletComponent extends RouterOutlet {
     connectedCallback() {
         this.setRoutes([
             { path: "/", name: "survey-list", authRequired: true },
+            { path: "/survey/edit/:surveyId", name: "survey-edit", authRequired: true },
+            { path: "/survey/create", name: "survey-edit", authRequired: true },
+            { path: "/survey/list", name: "survey-list", authRequired: true },
+
             { path: "/login", name: "login" },
             { path: "/error", name: "error" },
             { path: "*", name: "not-found" }

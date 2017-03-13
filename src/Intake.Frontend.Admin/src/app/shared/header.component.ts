@@ -2,8 +2,8 @@ import { Router } from "../router";
 import { CurrentUser } from "../users";
 import { Storage, TOKEN_KEY } from "../utilities";
 
-let template = require("./header.component.html");
-let styles = require("./header.component.scss");
+const template = require("./header.component.html");
+const styles = require("./header.component.scss");
 
 export class HeaderComponent extends HTMLElement {
     constructor(

@@ -1,3 +1,4 @@
+using Intake.Security;
 using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -5,13 +6,13 @@ using System.Web.Http.Description;
 
 namespace Intake.Features.Users
 {
-    [Authorize]
     [RoutePrefix("api/user")]
     public class UserController : ApiController
     {
-        public UserController(IMediator mediator)
+        public UserController(IMediator mediator, IUserManager userManager)
         {
             _mediator = mediator;
+            _userManager = userManager;
         }
 
         [Route("add")]
@@ -59,6 +60,6 @@ namespace Intake.Features.Users
         }
 
         protected readonly IMediator _mediator;
-
+        protected readonly IUserManager _userManager;
     }
 }
