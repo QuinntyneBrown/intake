@@ -35,7 +35,10 @@ namespace Intake.Features.Surveys
                     .SingleOrDefaultAsync(x => x.Id == request.Survey.Id && x.IsDeleted == false);
                 if (entity == null) _dataContext.Surveys.Add(entity = new Survey());
                 entity.Name = request.Survey.Name;
-                await _dataContext.SaveChangesAsync();
+                await _dataContext.SaveChangesAsync().ContinueWith((e) =>
+                {
+                    var a = e;
+                });
 
                 return new AddOrUpdateSurveyResponse()
                 {

@@ -12,6 +12,7 @@ namespace Intake.Features.Surveys
         {
             var model = new TModel();
             model.Id = survey.Id;
+            model.Name = survey.Name;
             return model;
         }
 
