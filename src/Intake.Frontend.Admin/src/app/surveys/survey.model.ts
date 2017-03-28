@@ -1,4 +1,4 @@
 export class Survey { 
-	id:number;
+	id:any;
 	name:string;
 }

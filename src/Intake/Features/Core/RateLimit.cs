@@ -25,13 +25,13 @@ namespace Intake.Features.Core
             //if (ip == null)
             //    actionContext.Response = actionContext.Request.CreateResponse(Forbidden, "The client ip couldn't be found");
 
-            //var requests = _dataContext.Ips.GetRequestsByIpAndHourQuery(DateTime.Now, ip);
+            //var requests = _context.Ips.GetRequestsByIpAndHourQuery(DateTime.Now, ip);
 
             //if (requests >= _maxRequestsHour)
             //    actionContext.Response = actionContext.Request.CreateResponse(Forbidden, "Quota Exceeded");
 
             //if (requests < _maxRequestsHour)
-            //    _dataContext.Ips.Increment(DateTime.Now, ip);
+            //    _context.Ips.Increment(DateTime.Now, ip);
         }
 
         private string GetClientIp(HttpRequestMessage request)
@@ -55,7 +55,7 @@ namespace Intake.Features.Core
         }
 
         [Dependency]
-        public IntakeContext _dataContext { get; set; }
+        public IntakeContext _context { get; set; }
 
         private int _maxRequestsHour;
     }

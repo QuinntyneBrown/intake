@@ -1,18 +1,14 @@
 import { Question } from "./question.model";
-import { QuestionService } from "./question.service";
-import { EditorComponent } from "../shared";
-import { Router } from "../router";
+import {  QuestionDelete, QuestionEdit, QuestionAdd } from "./question.actions";
+	
+const template = require("./question-item-embed.component.html");
+const styles = require("./question-item-embed.component.scss");
 
-const template = require("./question-item.component.html");
-const styles = require("./question-item.component.scss");
-
-export class QuestionItemComponent extends HTMLElement {
-    constructor(
-        private _questionService: QuestionService = QuestionService.Instance,
-        private _router: Router = Router.Instance) {
+export class QuestionItemEmbedComponent extends HTMLElement {
+    constructor() {
         super();
 
-		this._onDeleteClick = this._onDeleteClick.bind(this);
+        this._onDeleteClick = this._onDeleteClick.bind(this);
         this._onEditClick = this._onEditClick.bind(this);
         this._onViewClick = this._onViewClick.bind(this);
     }
@@ -44,23 +40,22 @@ export class QuestionItemComponent extends HTMLElement {
     }
 
     private async _onDeleteClick(e:Event) {
-        await this._questionService.remove({ id: this.entity.id });		
-		this.parentNode.removeChild(this);
+        this.dispatchEvent(new QuestionDelete(this.entity)); 
     }
 
     private _onEditClick() {
-        this._router.navigate(["question", "edit", this.entity.id]);
+        this.dispatchEvent(new QuestionEdit(this.entity));
     }
 
     private _onViewClick() {
-        this._router.navigate(["question","view",this.entity.id]);
+
     }
     
     attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
             case "entity":
                 this.entity = JSON.parse(newValue);
-				break;
+                break;
         }        
     }
 
@@ -71,4 +66,4 @@ export class QuestionItemComponent extends HTMLElement {
     public entity: Question;
 }
 
-customElements.define(`ce-question-item`,QuestionItemComponent);
+customElements.define(`ce-question-item-embed`,QuestionItemEmbedComponent);

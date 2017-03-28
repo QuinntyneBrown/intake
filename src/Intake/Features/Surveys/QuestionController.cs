@@ -1,8 +1,12 @@
-using MediatR;
 using Intake.Security;
+using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using static Intake.Features.Surveys.AddOrUpdateQuestionCommand;
+using static Intake.Features.Surveys.GetQuestionsQuery;
+using static Intake.Features.Surveys.GetQuestionByIdQuery;
+using static Intake.Features.Surveys.RemoveQuestionCommand;
 
 namespace Intake.Features.Surveys
 {
@@ -10,41 +14,57 @@ namespace Intake.Features.Surveys
     [RoutePrefix("api/question")]
     public class QuestionController : ApiController
     {
-        public QuestionController(IMediator mediator)
+        public QuestionController(IMediator mediator, IUserManager userManager)
         {
             _mediator = mediator;
+            _userManager = userManager;
         }
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateQuestionCommand.AddOrUpdateQuestionResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateQuestionCommand.AddOrUpdateQuestionRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateQuestionResponse))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateQuestionRequest request)
+        {
+            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            return Ok(await _mediator.Send(request));
+        }
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateQuestionCommand.AddOrUpdateQuestionResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateQuestionCommand.AddOrUpdateQuestionRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateQuestionResponse))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateQuestionRequest request)
+        {
+            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            return Ok(await _mediator.Send(request));
+        }
         
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(GetQuestionsQuery.GetQuestionsResponse))]
-        public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetQuestionsQuery.GetQuestionsRequest()));
+        [ResponseType(typeof(GetQuestionsResponse))]
+        public async Task<IHttpActionResult> Get([FromUri]GetQuestionsQuery.GetQuestionsRequest request)
+        {
+            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            return Ok(await _mediator.Send(request));
+        }
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetQuestionByIdQuery.GetQuestionByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetQuestionByIdQuery.GetQuestionByIdRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(GetQuestionByIdResponse))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetQuestionByIdRequest request)
+        {
+            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            return Ok(await _mediator.Send(request));
+        }
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveQuestionCommand.RemoveQuestionResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveQuestionCommand.RemoveQuestionRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(RemoveQuestionResponse))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveQuestionRequest request)
+        {
+            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            return Ok(await _mediator.Send(request));
+        }
 
         protected readonly IMediator _mediator;
         protected readonly IUserManager _userManager;

@@ -1,6 +1,8 @@
-﻿using Intake.Data.Model;
+﻿using Intake.Data.Helpers;
+using Intake.Data.Model;
 using System;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,6 +18,7 @@ namespace Intake.Data
         DbSet<Tenant> Tenants { get; set; }
         DbSet<Option> Options { get; set; }
         DbSet<Respondent> Respondents { get; set; }
+        DbSet<DigitalAsset> DigitalAssets { get; set; }
         Task<int> SaveChangesAsync();
     }
 
@@ -37,6 +40,7 @@ namespace Intake.Data
         public DbSet<Option> Options { get; set; }
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<Respondent> Respondents { get; set; }
+        public DbSet<DigitalAsset> DigitalAssets { get; set; }
 
         public override int SaveChanges()
         {
@@ -60,5 +64,27 @@ namespace Intake.Data
                 entity.LastModifiedOn = DateTime.UtcNow;
             }
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().
+                HasMany(u => u.Roles).
+                WithMany(r => r.Users).
+                Map(
+                    m =>
+                    {
+                        m.MapLeftKey("User_Id");
+                        m.MapRightKey("Role_Id");
+                        m.ToTable("UserRoles");
+                    });
+
+            var convention = new AttributeToTableAnnotationConvention<SoftDeleteAttribute, string>(
+                "SoftDeleteColumnName",
+                (type, attributes) => attributes.Single().ColumnName);
+
+            modelBuilder.Conventions.Add(convention);
+        }
     }
+
+    
 }

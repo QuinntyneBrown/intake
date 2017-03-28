@@ -6,6 +6,7 @@ namespace Intake.Features.Surveys
     {        
         public int Id { get; set; }
         public string Name { get; set; }
+        public int? TenantId { get; set; }
 
         public static TModel FromSurvey<TModel>(Survey survey) where
             TModel : SurveyApiModel, new()
@@ -13,6 +14,7 @@ namespace Intake.Features.Surveys
             var model = new TModel();
             model.Id = survey.Id;
             model.Name = survey.Name;
+            model.TenantId = survey.TenantId;
             return model;
         }
 

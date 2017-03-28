@@ -11,17 +11,18 @@ namespace Intake.Features.Users
     public class GetUserByIdQuery
     {
         public class GetUserByIdRequest : IRequest<GetUserByIdResponse> { 
-			public int Id { get; set; }
-		}
+            public int Id { get; set; }
+			public int? TenantId { get; set; }
+        }
 
         public class GetUserByIdResponse
         {
             public UserApiModel User { get; set; } 
-		}
+        }
 
         public class GetUserByIdHandler : IAsyncRequestHandler<GetUserByIdRequest, GetUserByIdResponse>
         {
-            public GetUserByIdHandler(IIntakeContext context, ICache cache)
+            public GetUserByIdHandler(IntakeContext context, ICache cache)
             {
                 _context = context;
                 _cache = cache;
@@ -31,11 +32,11 @@ namespace Intake.Features.Users
             {                
                 return new GetUserByIdResponse()
                 {
-                    User = UserApiModel.FromUser(await _context.Users.FindAsync(request.Id))
+                    User = UserApiModel.FromUser(await _context.Users.SingleAsync(x=>x.Id == request.Id && x.TenantId == request.TenantId))
                 };
             }
 
-            private readonly IIntakeContext _context;
+            private readonly IntakeContext _context;
             private readonly ICache _cache;
         }
 

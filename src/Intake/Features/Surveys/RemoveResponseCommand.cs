@@ -14,27 +14,28 @@ namespace Intake.Features.Surveys
         public class RemoveResponseRequest : IRequest<RemoveResponseResponse>
         {
             public int Id { get; set; }
+            public int? TenantId { get; set; }
         }
 
         public class RemoveResponseResponse { }
 
         public class RemoveResponseHandler : IAsyncRequestHandler<RemoveResponseRequest, RemoveResponseResponse>
         {
-            public RemoveResponseHandler(IntakeContext dataContext, ICache cache)
+            public RemoveResponseHandler(IntakeContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveResponseResponse> Handle(RemoveResponseRequest request)
             {
-                var response = await _dataContext.Responses.FindAsync(request.Id);
+                var response = await _context.Responses.SingleAsync(x=>x.Id == request.Id && x.TenantId == request.TenantId);
                 response.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveResponseResponse();
             }
 
-            private readonly IntakeContext _dataContext;
+            private readonly IntakeContext _context;
             private readonly ICache _cache;
         }
     }

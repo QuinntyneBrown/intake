@@ -12,7 +12,7 @@ export class SurveyService {
     }
 
     public get(): Promise<Array<Survey>> {
-        return this._fetch({ url: "/api/survey/get", authRequired: true }).then((results:string) => {
+        return this._fetch({ url: "/api/survey/get?tenantId=1", authRequired: true }).then((results:string) => {
             return (JSON.parse(results) as { surveys: Array<Survey> }).surveys;
         });
     }

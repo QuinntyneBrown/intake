@@ -20,21 +20,21 @@ namespace Intake.Features.Surveys
 
         public class RemoveSurveyHandler : IAsyncRequestHandler<RemoveSurveyRequest, RemoveSurveyResponse>
         {
-            public RemoveSurveyHandler(IntakeContext dataContext, ICache cache)
+            public RemoveSurveyHandler(IntakeContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<RemoveSurveyResponse> Handle(RemoveSurveyRequest request)
             {
-                var survey = await _dataContext.Surveys.FindAsync(request.Id);
+                var survey = await _context.Surveys.FindAsync(request.Id);
                 survey.IsDeleted = true;
-                await _dataContext.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new RemoveSurveyResponse();
             }
 
-            private readonly IntakeContext _dataContext;
+            private readonly IntakeContext _context;
             private readonly ICache _cache;
         }
     }

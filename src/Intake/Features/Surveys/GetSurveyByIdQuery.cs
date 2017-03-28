@@ -12,7 +12,8 @@ namespace Intake.Features.Surveys
     {
         public class GetSurveyByIdRequest : IRequest<GetSurveyByIdResponse> { 
 			public int Id { get; set; }
-		}
+            public int? TenantId { get; set; }
+        }
 
         public class GetSurveyByIdResponse
         {
@@ -21,9 +22,9 @@ namespace Intake.Features.Surveys
 
         public class GetSurveyByIdHandler : IAsyncRequestHandler<GetSurveyByIdRequest, GetSurveyByIdResponse>
         {
-            public GetSurveyByIdHandler(IntakeContext dataContext, ICache cache)
+            public GetSurveyByIdHandler(IntakeContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -31,11 +32,11 @@ namespace Intake.Features.Surveys
             {                
                 return new GetSurveyByIdResponse()
                 {
-                    Survey = SurveyApiModel.FromSurvey(await _dataContext.Surveys.FindAsync(request.Id))
+                    Survey = SurveyApiModel.FromSurvey(await _context.Surveys.FindAsync(request.Id))
                 };
             }
 
-            private readonly IntakeContext _dataContext;
+            private readonly IntakeContext _context;
             private readonly ICache _cache;
         }
 

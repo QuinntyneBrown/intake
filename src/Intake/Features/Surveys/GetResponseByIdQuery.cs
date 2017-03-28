@@ -11,19 +11,20 @@ namespace Intake.Features.Surveys
     public class GetResponseByIdQuery
     {
         public class GetResponseByIdRequest : IRequest<GetResponseByIdResponse> { 
-			public int Id { get; set; }
-		}
+            public int Id { get; set; }
+			public int? TenantId { get; set; }
+        }
 
         public class GetResponseByIdResponse
         {
             public ResponseApiModel Response { get; set; } 
-		}
+        }
 
         public class GetResponseByIdHandler : IAsyncRequestHandler<GetResponseByIdRequest, GetResponseByIdResponse>
         {
-            public GetResponseByIdHandler(IntakeContext dataContext, ICache cache)
+            public GetResponseByIdHandler(IntakeContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
@@ -31,11 +32,11 @@ namespace Intake.Features.Surveys
             {                
                 return new GetResponseByIdResponse()
                 {
-                    Response = ResponseApiModel.FromResponse(await _dataContext.Responses.FindAsync(request.Id))
+                    Response = ResponseApiModel.FromResponse(await _context.Responses.SingleAsync(x=>x.Id == request.Id && x.TenantId == request.TenantId))
                 };
             }
 
-            private readonly IntakeContext _dataContext;
+            private readonly IntakeContext _context;
             private readonly ICache _cache;
         }
 

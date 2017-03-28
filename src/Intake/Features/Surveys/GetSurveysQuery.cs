@@ -5,30 +5,33 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
+using Microsoft.Owin;
 
 namespace Intake.Features.Surveys
 {
     public class GetSurveysQuery
     {
-        public class GetSurveysRequest : IRequest<GetSurveysResponse> { }
+        public class GetSurveysRequest : IRequest<GetSurveysResponse> {
+            public int? TenantId { get; set; }
+        }
 
         public class GetSurveysResponse
         {
-            public ICollection<SurveyApiModel> Surveys { get; set; } = new HashSet<SurveyApiModel>();
+            public ICollection<SurveyApiModel> Surveys { get; set; } = new HashSet<SurveyApiModel>();            
         }
 
         public class GetSurveysHandler : IAsyncRequestHandler<GetSurveysRequest, GetSurveysResponse>
         {
-            public GetSurveysHandler(IntakeContext dataContext, ICache cache)
+            public GetSurveysHandler(IntakeContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetSurveysResponse> Handle(GetSurveysRequest request)
             {
-                var surveys = await _dataContext.Surveys
-                    .Where(x=>x.IsDeleted == false)
+               var surveys = await _context.Surveys
+                    .Where(x=>x.TenantId == request.TenantId)
                     .ToListAsync();
 
                 return new GetSurveysResponse()
@@ -37,10 +40,8 @@ namespace Intake.Features.Surveys
                 };
             }
 
-            private readonly IntakeContext _dataContext;
+            private readonly IntakeContext _context;
             private readonly ICache _cache;
         }
-
     }
-
 }

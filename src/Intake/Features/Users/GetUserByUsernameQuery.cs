@@ -11,6 +11,7 @@ namespace Intake.Features.Users
         public class GetUserByUsernameRequest : IRequest<GetUserByUsernameResponse>
         {
             public string Username { get; set; }
+            public int? TenantId { get; set; }
         }
 
         public class GetUserByUsernameResponse
@@ -30,7 +31,7 @@ namespace Intake.Features.Users
             {
                 return new GetUserByUsernameResponse()
                 {
-                    User = UserApiModel.FromUser(await _context.Users.SingleAsync(x=>x.Username == request.Username))
+                    User = UserApiModel.FromUser(await _context.Users.SingleAsync(x=>x.Username == request.Username && x.TenantId == request.TenantId))
                 };
             }
 

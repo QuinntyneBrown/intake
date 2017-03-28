@@ -23,6 +23,11 @@ export class QuestionService {
         });
     }
 
+    public getBySurveyId(surveyid): Promise<Question> {
+        return this._fetch({ url: `/api/question/getbysurveyid?surveyid=${surveyid}`, authRequired: true }).then((results: string) => {
+            return (JSON.parse(results) as { questions: Array<Question> }).questions;
+        });
+    }
     public add(question) {
         return this._fetch({ url: `/api/question/add`, method: "POST", data: { question }, authRequired: true  });
     }

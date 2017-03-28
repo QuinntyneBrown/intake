@@ -209,6 +209,30 @@
     <Content Include="src\app\app.component.scss">
       <DependentUpon>app.component.ts</DependentUpon>
     </Content>
+    <Content Include="src\app\questions\question-edit-embed.component.html">
+      <DependentUpon>question-edit-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\questions\question-edit-embed.component.scss">
+      <DependentUpon>question-edit-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\questions\question-item-embed.component.html">
+      <DependentUpon>question-item-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\questions\question-item-embed.component.scss">
+      <DependentUpon>question-item-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\questions\question-list-embed.component.html">
+      <DependentUpon>question-list-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\questions\question-list-embed.component.scss">
+      <DependentUpon>question-list-embed.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\questions\question-master-detail.component.html">
+      <DependentUpon>question-master-detail.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\questions\question-master-detail.component.scss">
+      <DependentUpon>question-master-detail.component.ts</DependentUpon>
+    </Content>
     <Content Include="src\app\shared\button.component.html">
       <DependentUpon>button.component.ts</DependentUpon>
     </Content>
@@ -275,23 +299,17 @@
     <Content Include="src\app\shared\tabs.component.scss">
       <DependentUpon>tabs.component.ts</DependentUpon>
     </Content>
-    <Content Include="src\app\surveys\question-edit.component.html">
-      <DependentUpon>question-edit.component.ts</DependentUpon>
-    </Content>
-    <Content Include="src\app\surveys\question-edit.component.scss">
-      <DependentUpon>question-edit.component.ts</DependentUpon>
-    </Content>
-    <Content Include="src\app\surveys\question-list.component.html">
-      <DependentUpon>question-list.component.ts</DependentUpon>
-    </Content>
-    <Content Include="src\app\surveys\question-list.component.scss">
-      <DependentUpon>question-list.component.ts</DependentUpon>
-    </Content>
     <Content Include="src\app\surveys\survey-edit.component.html">
       <DependentUpon>survey-edit.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\surveys\survey-edit.component.scss">
       <DependentUpon>survey-edit.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\surveys\survey-item.component.html">
+      <DependentUpon>survey-item.component.ts</DependentUpon>
+    </Content>
+    <Content Include="src\app\surveys\survey-item.component.scss">
+      <DependentUpon>survey-item.component.ts</DependentUpon>
     </Content>
     <Content Include="src\app\surveys\survey-list.component.html">
       <DependentUpon>survey-list.component.ts</DependentUpon>
@@ -330,10 +348,6 @@
     <Content Include="src\styles\base\entity-list.scss" />
     <Content Include="src\styles\base\select.scss" />
     <Content Include="src\styles\base\view-card.scss" />
-    <Content Include="src\app\surveys\survey-item.component.scss" />
-    <Content Include="src\app\surveys\survey-item.component.html" />
-    <Content Include="src\app\surveys\question-item.component.scss" />
-    <Content Include="src\app\surveys\question-item.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
@@ -421,7 +435,6 @@
     <TypeScriptCompile Include="src\app\shared\side-nav.component.ts" />
     <TypeScriptCompile Include="src\app\shared\tabs.component.ts" />
     <TypeScriptCompile Include="src\app\shared\title.service.ts" />
-    <TypeScriptCompile Include="src\app\surveys\question-type.ts" />
     <TypeScriptCompile Include="src\app\utilities\add-or-update.ts" />
     <TypeScriptCompile Include="src\app\utilities\append-to-body-async.ts" />
     <TypeScriptCompile Include="src\app\utilities\append-to-target-async.ts" />
@@ -476,14 +489,17 @@
     <TypeScriptCompile Include="src\app\users\users.component.ts" />
     <TypeScriptCompile Include="src\custom-typings.d.ts" />
     <TypeScriptCompile Include="src\main.ts" />
-    <TypeScriptCompile Include="src\app\surveys\question-list.component.ts" />
-    <TypeScriptCompile Include="src\app\surveys\question-edit.component.ts" />
-    <TypeScriptCompile Include="src\app\surveys\question.model.ts" />
-    <TypeScriptCompile Include="src\app\surveys\question.service.ts" />
     <TypeScriptCompile Include="src\app\app-router-outlet.component.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
     <TypeScriptCompile Include="src\app\surveys\survey-item.component.ts" />
-    <TypeScriptCompile Include="src\app\surveys\question-item.component.ts" />
+    <TypeScriptCompile Include="src\app\questions\question-edit-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\questions\question-item-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\questions\question-list-embed.component.ts" />
+    <TypeScriptCompile Include="src\app\questions\question-master-detail.component.ts" />
+    <TypeScriptCompile Include="src\app\questions\question.actions.ts" />
+    <TypeScriptCompile Include="src\app\questions\index.ts" />
+    <TypeScriptCompile Include="src\app\questions\question.model.ts" />
+    <TypeScriptCompile Include="src\app\questions\question.service.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

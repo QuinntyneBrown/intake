@@ -14,16 +14,14 @@ namespace Intake.Features.Users
         public class AddOrUpdateUserRequest : IRequest<AddOrUpdateUserResponse>
         {
             public UserApiModel User { get; set; }
+			public int? TenantId { get; set; }
         }
 
-        public class AddOrUpdateUserResponse
-        {
-
-        }
+        public class AddOrUpdateUserResponse { }
 
         public class AddOrUpdateUserHandler : IAsyncRequestHandler<AddOrUpdateUserRequest, AddOrUpdateUserResponse>
         {
-            public AddOrUpdateUserHandler(IIntakeContext context, ICache cache)
+            public AddOrUpdateUserHandler(IntakeContext context, ICache cache)
             {
                 _context = context;
                 _cache = cache;
@@ -32,18 +30,17 @@ namespace Intake.Features.Users
             public async Task<AddOrUpdateUserResponse> Handle(AddOrUpdateUserRequest request)
             {
                 var entity = await _context.Users
-                    .SingleOrDefaultAsync(x => x.Id == request.User.Id && x.IsDeleted == false);
+                    .SingleOrDefaultAsync(x => x.Id == request.User.Id && x.TenantId == request.TenantId);
                 if (entity == null) _context.Users.Add(entity = new User());
                 entity.Name = request.User.Name;
+				entity.TenantId = request.TenantId;
+
                 await _context.SaveChangesAsync();
 
-                return new AddOrUpdateUserResponse()
-                {
-
-                };
+                return new AddOrUpdateUserResponse();
             }
 
-            private readonly IIntakeContext _context;
+            private readonly IntakeContext _context;
             private readonly ICache _cache;
         }
 

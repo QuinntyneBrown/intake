@@ -3,9 +3,15 @@ using MediatR;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using static Intake.Features.Users.AddOrUpdateUserCommand;
+using static Intake.Features.Users.GetUsersQuery;
+using static Intake.Features.Users.GetUserByIdQuery;
+using static Intake.Features.Users.RemoveUserCommand;
+using static Intake.Features.Users.GetUserByUsernameQuery;
 
 namespace Intake.Features.Users
 {
+    [Authorize]
     [RoutePrefix("api/user")]
     public class UserController : ApiController
     {
@@ -17,45 +23,62 @@ namespace Intake.Features.Users
 
         [Route("add")]
         [HttpPost]
-        [ResponseType(typeof(AddOrUpdateUserCommand.AddOrUpdateUserResponse))]
-        public async Task<IHttpActionResult> Add(AddOrUpdateUserCommand.AddOrUpdateUserRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateUserResponse))]
+        public async Task<IHttpActionResult> Add(AddOrUpdateUserRequest request)
+        {
+            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            return Ok(await _mediator.Send(request));
+        }
 
         [Route("update")]
         [HttpPut]
-        [ResponseType(typeof(AddOrUpdateUserCommand.AddOrUpdateUserResponse))]
-        public async Task<IHttpActionResult> Update(AddOrUpdateUserCommand.AddOrUpdateUserRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(AddOrUpdateUserResponse))]
+        public async Task<IHttpActionResult> Update(AddOrUpdateUserRequest request)
+        {
+            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            return Ok(await _mediator.Send(request));
+        }
         
         [Route("get")]
         [AllowAnonymous]
         [HttpGet]
-        [ResponseType(typeof(GetUsersQuery.GetUsersResponse))]
-        public async Task<IHttpActionResult> Get()
-            => Ok(await _mediator.Send(new GetUsersQuery.GetUsersRequest()));
+        [ResponseType(typeof(GetUsersResponse))]
+        public async Task<IHttpActionResult> Get([FromUri]GetUsersQuery.GetUsersRequest request)
+        {
+            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            return Ok(await _mediator.Send(request));
+        }
 
         [Route("getById")]
         [HttpGet]
-        [ResponseType(typeof(GetUserByIdQuery.GetUserByIdResponse))]
-        public async Task<IHttpActionResult> GetById([FromUri]GetUserByIdQuery.GetUserByIdRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(GetUserByIdResponse))]
+        public async Task<IHttpActionResult> GetById([FromUri]GetUserByIdRequest request)
+        {
+            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            return Ok(await _mediator.Send(request));
+        }
 
         [Route("remove")]
         [HttpDelete]
-        [ResponseType(typeof(RemoveUserCommand.RemoveUserResponse))]
-        public async Task<IHttpActionResult> Remove([FromUri]RemoveUserCommand.RemoveUserRequest request)
-            => Ok(await _mediator.Send(request));
+        [ResponseType(typeof(RemoveUserResponse))]
+        public async Task<IHttpActionResult> Remove([FromUri]RemoveUserRequest request)
+        {
+            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            return Ok(await _mediator.Send(request));
+        }
 
         [Route("current")]
         [HttpGet]
         [AllowAnonymous]
-        [ResponseType(typeof(GetUserByUsernameQuery.GetUserByUsernameResponse))]
-        public async Task<IHttpActionResult> Current()
+        [ResponseType(typeof(GetUserByUsernameResponse))]
+        public async Task<IHttpActionResult> Current([FromUri]GetUserByUsernameRequest request)
         {
             if (!User.Identity.IsAuthenticated)
                 return Ok();
 
-            var request = new GetUserByUsernameQuery.GetUserByUsernameRequest() { Username = User.Identity.Name };
+            request.Username = User.Identity.Name;
+            request.TenantId = (await _userManager.GetUserAsync(User)).TenantId;
+            
             return Ok(await _mediator.Send(request));
         }
 

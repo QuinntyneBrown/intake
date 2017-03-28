@@ -10,7 +10,9 @@ namespace Intake.Features.Surveys
 {
     public class GetRespondentsQuery
     {
-        public class GetRespondentsRequest : IRequest<GetRespondentsResponse> { }
+        public class GetRespondentsRequest : IRequest<GetRespondentsResponse> { 
+            public int? TenantId { get; set; }		
+		}
 
         public class GetRespondentsResponse
         {
@@ -19,16 +21,16 @@ namespace Intake.Features.Surveys
 
         public class GetRespondentsHandler : IAsyncRequestHandler<GetRespondentsRequest, GetRespondentsResponse>
         {
-            public GetRespondentsHandler(IntakeContext dataContext, ICache cache)
+            public GetRespondentsHandler(IntakeContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<GetRespondentsResponse> Handle(GetRespondentsRequest request)
             {
-                var respondents = await _dataContext.Respondents
-                    .Where(x=>x.IsDeleted == false)
+                var respondents = await _context.Respondents
+				    .Where( x => x.TenantId == request.TenantId )
                     .ToListAsync();
 
                 return new GetRespondentsResponse()
@@ -37,7 +39,7 @@ namespace Intake.Features.Surveys
                 };
             }
 
-            private readonly IntakeContext _dataContext;
+            private readonly IntakeContext _context;
             private readonly ICache _cache;
         }
 

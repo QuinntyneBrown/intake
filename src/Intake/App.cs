@@ -27,7 +27,7 @@ namespace Intake
             config.Filters.Add(new HandleErrorAttribute(UnityConfiguration.GetContainer().Resolve<ILoggerFactory>()));
 
             app.UseCors(CorsOptions.AllowAll);
-
+            
             config.SuppressHostPrincipal();
 
             var mediator = container.Resolve<IMediator>();
@@ -54,11 +54,6 @@ namespace Intake
             config.Formatters.Remove(config.Formatters.XmlFormatter);
 
             config.MapHttpAttributeRoutes();
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-                );
         }
     }
 
@@ -83,7 +78,6 @@ namespace Intake
             }
             return camelCaseContractResolver.ResolveContract(type);
         }
-
     }
 
     public class Constants

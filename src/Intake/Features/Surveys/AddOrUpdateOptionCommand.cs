@@ -14,36 +14,33 @@ namespace Intake.Features.Surveys
         public class AddOrUpdateOptionRequest : IRequest<AddOrUpdateOptionResponse>
         {
             public OptionApiModel Option { get; set; }
+			public int? TenantId { get; set; }
         }
 
-        public class AddOrUpdateOptionResponse
-        {
-
-        }
+        public class AddOrUpdateOptionResponse { }
 
         public class AddOrUpdateOptionHandler : IAsyncRequestHandler<AddOrUpdateOptionRequest, AddOrUpdateOptionResponse>
         {
-            public AddOrUpdateOptionHandler(IntakeContext dataContext, ICache cache)
+            public AddOrUpdateOptionHandler(IntakeContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateOptionResponse> Handle(AddOrUpdateOptionRequest request)
             {
-                var entity = await _dataContext.Options
-                    .SingleOrDefaultAsync(x => x.Id == request.Option.Id && x.IsDeleted == false);
-                if (entity == null) _dataContext.Options.Add(entity = new Option());
+                var entity = await _context.Options
+                    .SingleOrDefaultAsync(x => x.Id == request.Option.Id && x.TenantId == request.TenantId);
+                if (entity == null) _context.Options.Add(entity = new Option());
                 entity.Name = request.Option.Name;
-                await _dataContext.SaveChangesAsync();
+				entity.TenantId = request.TenantId;
 
-                return new AddOrUpdateOptionResponse()
-                {
+                await _context.SaveChangesAsync();
 
-                };
+                return new AddOrUpdateOptionResponse();
             }
 
-            private readonly IntakeContext _dataContext;
+            private readonly IntakeContext _context;
             private readonly ICache _cache;
         }
 

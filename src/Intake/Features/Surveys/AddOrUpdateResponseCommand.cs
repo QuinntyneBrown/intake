@@ -1,7 +1,7 @@
-using MediatR;
 using Intake.Data;
 using Intake.Data.Model;
 using Intake.Features.Core;
+using MediatR;
 using System.Threading.Tasks;
 using System.Data.Entity;
 
@@ -12,36 +12,33 @@ namespace Intake.Features.Surveys
         public class AddOrUpdateResponseRequest : IRequest<AddOrUpdateResponseResponse>
         {
             public ResponseApiModel Response { get; set; }
+			public int? TenantId { get; set; }
         }
 
-        public class AddOrUpdateResponseResponse
-        {
-
-        }
+        public class AddOrUpdateResponseResponse { }
 
         public class AddOrUpdateResponseHandler : IAsyncRequestHandler<AddOrUpdateResponseRequest, AddOrUpdateResponseResponse>
         {
-            public AddOrUpdateResponseHandler(IntakeContext dataContext, ICache cache)
+            public AddOrUpdateResponseHandler(IntakeContext context, ICache cache)
             {
-                _dataContext = dataContext;
+                _context = context;
                 _cache = cache;
             }
 
             public async Task<AddOrUpdateResponseResponse> Handle(AddOrUpdateResponseRequest request)
             {
-                var entity = await _dataContext.Responses
-                    .SingleOrDefaultAsync(x => x.Id == request.Response.Id && x.IsDeleted == false);
-                if (entity == null) _dataContext.Responses.Add(entity = new Response());
-                
-                await _dataContext.SaveChangesAsync();
+                var entity = await _context.Responses
+                    .SingleOrDefaultAsync(x => x.Id == request.Response.Id && x.TenantId == request.TenantId);
+                if (entity == null) _context.Responses.Add(entity = new Response());
+				entity.TenantId = request.TenantId;
+
+                await _context.SaveChangesAsync();
 
                 return new AddOrUpdateResponseResponse();
             }
 
-            private readonly IntakeContext _dataContext;
+            private readonly IntakeContext _context;
             private readonly ICache _cache;
         }
-
     }
-
 }

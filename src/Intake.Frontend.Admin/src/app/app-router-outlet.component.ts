@@ -13,6 +13,8 @@ export class AppRouterOutletComponent extends RouterOutlet {
             { path: "/survey/create", name: "survey-edit", authRequired: true },
             { path: "/survey/list", name: "survey-list", authRequired: true },
 
+            { path: "/questions", name: "question-master-detail", authRequired: true },
+
             { path: "/login", name: "login" },
             { path: "/error", name: "error" },
             { path: "*", name: "not-found" }

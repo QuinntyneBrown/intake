@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Intake.Features.Users
+﻿namespace Intake.Features.Users
 {
     public class Roles
     {

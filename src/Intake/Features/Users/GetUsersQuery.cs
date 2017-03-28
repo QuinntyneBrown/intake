@@ -10,7 +10,9 @@ namespace Intake.Features.Users
 {
     public class GetUsersQuery
     {
-        public class GetUsersRequest : IRequest<GetUsersResponse> { }
+        public class GetUsersRequest : IRequest<GetUsersResponse> { 
+            public int? TenantId { get; set; }		
+		}
 
         public class GetUsersResponse
         {
@@ -19,7 +21,7 @@ namespace Intake.Features.Users
 
         public class GetUsersHandler : IAsyncRequestHandler<GetUsersRequest, GetUsersResponse>
         {
-            public GetUsersHandler(IIntakeContext context, ICache cache)
+            public GetUsersHandler(IntakeContext context, ICache cache)
             {
                 _context = context;
                 _cache = cache;
@@ -27,14 +29,17 @@ namespace Intake.Features.Users
 
             public async Task<GetUsersResponse> Handle(GetUsersRequest request)
             {
-                var users = await _context.Users.ToListAsync();
+                var users = await _context.Users
+				    .Where( x => x.TenantId == request.TenantId )
+                    .ToListAsync();
+
                 return new GetUsersResponse()
                 {
                     Users = users.Select(x => UserApiModel.FromUser(x)).ToList()
                 };
             }
 
-            private readonly IIntakeContext _context;
+            private readonly IntakeContext _context;
             private readonly ICache _cache;
         }
 
